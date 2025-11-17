@@ -8,4 +8,8 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\TP11-EDD2.DATA\TP11-EDD2.DATA.csproj" />
+    </ItemGroup>
+
 </Project>
