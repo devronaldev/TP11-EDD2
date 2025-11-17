@@ -1,14 +1,16 @@
+using System.Text;
+
 namespace TP11_EDD2.DATA.Entities;
 
 public class User
 {
     public int Id { get; set; }
     public string Name { get; set; }
-    public List<Domain> Environments { get; set; }
+    public List<Domain> Domains { get; set; }
 
     public User()
     {
-        Environments = new List<Domain>();
+        Domains = new List<Domain>();
     }
 
     public User(int id, string name) : this()
@@ -19,21 +21,21 @@ public class User
 
     public bool GivePermission(Domain domain)
     {
-        var existingDomain = Environments.FirstOrDefault(d => d.Equals(domain));
+        var existingDomain = Domains.FirstOrDefault(d => d.Equals(domain));
         if (existingDomain != null)
         {
             return false;
         }
-        Environments.Add(domain);
+        Domains.Add(domain);
         return true;
     }
 
     public bool RevokePermission(Domain domain)
     {
-        var existingDomain = Environments.FirstOrDefault(d => d.Equals(domain));
+        var existingDomain = Domains.FirstOrDefault(d => d.Equals(domain));
         if (existingDomain != null)
         {
-            return Environments.Remove(existingDomain);
+            return Domains.Remove(existingDomain);
         }
         return false;
     }
@@ -45,6 +47,18 @@ public class User
             return true;
         }
         return false;
+    }
+
+    public override string ToString()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.AppendLine($"Nome: {Name} - Id: {Id}");
+        sb.AppendLine($"==/ Ambientes /==");
+        foreach (var domain in Domains)
+        {
+            sb.AppendLine($"Ambiente: {domain.Name} - Id: {domain.Id}");
+        }
+        return sb.ToString();
     }
 }
 
