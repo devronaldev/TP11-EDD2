@@ -1,7 +1,10 @@
+using TP11_EDD2.DATA.Entities;
+
 namespace TP11_EDD2.Views;
 
 public class Menu
 {
+    Register _register = new Register(); 
     public void Init()
     {
         while (true)
@@ -36,47 +39,104 @@ public class Menu
         switch (optionNumber)
         {
             case 0: Environment.Exit(0); break;
-            case 1: Environment.Exit(1); break;
-            case 2: Environment.Exit(2); break;
-            case 3: Environment.Exit(3); break;
-            case 4: Environment.Exit(4); break;
-            case 5: Environment.Exit(5); break;
-            case 6: Environment.Exit(6); break;
-            case 7: Environment.Exit(7); break;
-            case 8: Environment.Exit(8); break;
-            case 9: Environment.Exit(9); break;
-            case 10: Environment.Exit(10); break;
+            case 1: AddDomain(); break;
+            case 2: SearchDomain(); break;
+            case 3: DeleteDomain(); break;
+            case 4: AddUser(); break;
+            case 5: SearchUser(); break;
+            case 6: DeleteUser(); break;
+            case 7: GivePermission(); break;
+            case 8: RevokePermission(); break;
+            case 9: RegisterAccess(); break;
+            case 10: ShowLogs(); break;
         }
     }
 
     private void AddDomain()
     {
-        
+        Console.Write("Insira o nome do ambiente: ");
+        var name = Console.ReadLine();
+        var domain = new Domain{Name = name};
+        _register.AddDomain(domain);
+        Console.WriteLine("Ambiente adicionado com sucesso!");
     }
     
     private void SearchDomain()
     {
-        
+        Console.Write("Insira o nome do ambiente: ");
+        var name = Console.ReadLine();
+        var domain = new Domain{Name = name};
+        var foundDomain = _register.SearchDomain(domain);
+        if (foundDomain == null)
+        {
+            Console.WriteLine("Dominio não encontrado.");
+        }
+        else
+        {
+            Console.WriteLine(foundDomain.ToString());
+        }
     }
 
     private void DeleteDomain()
     {
-        
+        Console.WriteLine("Insira o nome do ambiente: ");
+        var name = Console.ReadLine();
+        var domain = new Domain{Name = name};
+
+        if (!_register.DeleteDomain(domain))
+        {
+            Console.WriteLine("Erro ao remover ambiente!");
+        }
+        else
+        {
+            Console.WriteLine("Ambiente removido com sucesso!");
+        }
     }
 
     private void AddUser()
     {
-        
+        Console.Write("Insira o nome do usuário: ");
+        var name = Console.ReadLine();
+        var user = new User{Name = name};
+        _register.AddUser(user);
+        Console.WriteLine("Usuário registrado com sucesso.");
     }
 
     private void SearchUser()
     {
-        
+        Console.Write("Insira o nome do usuário: ");
+        var name = Console.ReadLine();
+        var user = new User{Name = name};
+        var foundUser = _register.SearchUser(user);
+        if (foundUser == null)
+        {
+            Console.WriteLine("Usuário não encontrado.");
+        }
+        else
+        {
+            Console.WriteLine(foundUser.ToString());
+        }
     }
 
     private void DeleteUser()
     {
-        
+        Console.Write("Insira o nome do usuário: ");
+        var name = Console.ReadLine();
+        var user = new User{Name = name};
+        var foundUser = _register.SearchUser(user);
+        if (foundUser == null)
+        {
+            Console.WriteLine("Usuário não encontrado.");
+        }
+
+        if (_register.DeleteUser(foundUser))
+        {
+            Console.WriteLine("Usuário deletado com sucesso!");
+        }
+        else
+        {
+            Console.WriteLine("Usuário não deletado! Verifique se ele ainda tem permissões!");
+        }
     }
 
     private void GivePermission()
