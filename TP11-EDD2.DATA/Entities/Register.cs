@@ -12,7 +12,16 @@ public class Register
 
     public bool DeleteUser(User user)
     {
-        return Users.Remove(user);
+        var userToDelete = SearchUser(user);
+        if (userToDelete == null)
+        {
+            return false;
+        }
+        if (userToDelete.Environments.Any())
+        {
+            return false;
+        }
+        return Users.Remove(userToDelete);
     }
 
     public User? SearchUser(User user)
@@ -27,6 +36,11 @@ public class Register
 
     public bool DeleteDomain(Domain domain)
     {
+        var domainToDelete = SearchDomain(domain);
+        if (domainToDelete == null)
+        {
+            return false;
+        }
         return Domains.Remove(domain);
     }
 
@@ -37,11 +51,11 @@ public class Register
 
     public void UploadData()
     {
-        
+        //TODO: IMPLEMENT WHEN YOU CREATE INFRA LAYER
     }
     
     public void DownloadData()
     {
-        
+        //TODO: IMPLEMENT WHEN YOU CREATE INFRA LAYER
     }
 }
