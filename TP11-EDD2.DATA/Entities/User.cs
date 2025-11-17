@@ -6,14 +6,36 @@ public class User
     public string Name { get; set; }
     public List<Domain> Environments { get; set; }
 
-    public bool GivePermission()
+    public User()
     {
+        Environments = new List<Domain>();
+    }
+
+    public User(int id, string name) : this()
+    {
+        Id = id;
+        Name = name;
+    }
+
+    public bool GivePermission(Domain domain)
+    {
+        var existingDomain = Environments.FirstOrDefault(d => d.Equals(domain));
+        if (existingDomain != null)
+        {
+            return false;
+        }
+        Environments.Add(domain);
         return true;
     }
 
-    public bool RevokePermission()
+    public bool RevokePermission(Domain domain)
     {
-        return true;
+        var existingDomain = Environments.FirstOrDefault(d => d.Equals(domain));
+        if (existingDomain != null)
+        {
+            return Environments.Remove(existingDomain);
+        }
+        return false;
     }
 
     public bool Equal(User user)
