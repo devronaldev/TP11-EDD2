@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TP11-EDD2.VIEW", "TP11-EDD2.VIEW\TP11-EDD2.VIEW.csproj", "{AEDB7787-CC68-48BA-8F7B-9AD405B88745}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TP11-EDD2.DATA", "TP11-EDD2.DATA\TP11-EDD2.DATA.csproj", "{0CB44564-6B86-4EAE-A8DE-EE85D0BFDB8E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AEDB7787-CC68-48BA-8F7B-9AD405B88745}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AEDB7787-CC68-48BA-8F7B-9AD405B88745}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AEDB7787-CC68-48BA-8F7B-9AD405B88745}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AEDB7787-CC68-48BA-8F7B-9AD405B88745}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0CB44564-6B86-4EAE-A8DE-EE85D0BFDB8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0CB44564-6B86-4EAE-A8DE-EE85D0BFDB8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0CB44564-6B86-4EAE-A8DE-EE85D0BFDB8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0CB44564-6B86-4EAE-A8DE-EE85D0BFDB8E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
