@@ -7,6 +7,7 @@ public class Register
     
     public void AddUser(User user)
     {
+        user.Id = Users.Any() ? Users.Max(u => u.Id) + 1 : 1;
         Users.Add(user);
     }
 
@@ -17,7 +18,7 @@ public class Register
         {
             return false;
         }
-        if (userToDelete.Environments.Any())
+        if (userToDelete.Domains.Any())
         {
             return false;
         }
@@ -31,6 +32,7 @@ public class Register
 
     public void AddDomain(Domain domain)
     {
+        domain.Id = Domains.Any() ? Domains.Max(d => d.Id) + 1 : 1;
         Domains.Add(domain);
     }
 
