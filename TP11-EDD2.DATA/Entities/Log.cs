@@ -51,11 +51,19 @@ public class Log
     /// <remarks>
     /// PT-BR: Inicializa uma nova instância da classe Log usando o horário UTC atual.
     /// </remarks>
-    public Log(User user, bool isAuthorized)
+    public Log(User user, Domain domain)
     {
         AccessDate = DateTime.UtcNow;
         User = user;
-        IsAuthorized = isAuthorized;
+
+        if (user.Domains.Contains(domain))
+        {
+            IsAuthorized = true;
+        }
+        else
+        {
+            IsAuthorized = false;
+        }
     }
 
     /// <summary>
