@@ -141,21 +141,82 @@ public class Menu
 
     private void GivePermission()
     {
+        Console.Write("Insira o nome do usuário: ");
+        var name = Console.ReadLine();
+        var existingUser = _register.SearchUser(new User{Name = name});
+        if (existingUser == null)
+        {
+            Console.WriteLine("Usuário não encontrado!");
+            return;
+        }
         
+        Console.Write("Insira o nome do ambiente: ");
+        var domainName = Console.ReadLine();
+        var existingDomain =  _register.SearchDomain(new Domain{Name = domainName});
+        if (existingDomain == null)
+        {
+            Console.WriteLine("Ambiente não encontrado!");
+            return;
+        }
+        
+        existingUser.GivePermission(existingDomain);
+        Console.WriteLine("Permissão concedida!");
     }
 
     private void RevokePermission()
     {
+        Console.Write("Insira o nome do usuário: ");
+        var name = Console.ReadLine();
+        var existingUser = _register.SearchUser(new User{Name = name});
+        if (existingUser == null)
+        {
+            Console.WriteLine("Usuário não encontrado!");
+            return;
+        }
         
+        Console.Write("Insira o nome do ambiente: ");
+        var domainName = Console.ReadLine();
+        var existingDomain =  _register.SearchDomain(new Domain{Name = domainName});
+        if (existingDomain == null)
+        {
+            Console.WriteLine("Ambiente não encontrado!");
+            return;
+        }
+        
+        existingUser.RevokePermission(existingDomain);
+        Console.WriteLine("Permissão revogada!");
     }
 
     private void RegisterAccess()
     {
+        Console.Write("Insira o nome do usuário: ");
+        var name = Console.ReadLine();
+        var existingUser = _register.SearchUser(new User{Name = name});
+        if (existingUser == null)
+        {
+            Console.WriteLine("Usuário não encontrado!");
+            return;
+        }
         
+        Console.Write("Insira o nome do ambiente: ");
+        var domainName = Console.ReadLine();
+        var existingDomain =  _register.SearchDomain(new Domain{Name = domainName});
+        if (existingDomain == null)
+        {
+            Console.WriteLine("Ambiente não encontrado!");
+            return;
+        }
+        
+        var log = new Log(existingUser, existingDomain);
+        existingDomain.RegistLog(log);
+        Console.WriteLine($"O Log: {log} - Foi registrado com sucesso!");
     }
 
     private void ShowLogs()
     {
-        
+        foreach (var domain in _register.Domains)
+        {
+            Console.WriteLine(domain.ToString());
+        }
     }
 }
